@@ -19,7 +19,17 @@ class HomeController extends Controller
         $homeInfo = new HomeModel();
         $homeInfo->user_name = $req->user_name;
         $homeInfo->user_email = $req->user_email;
+
         $homeInfo->user_subject = $req->user_subject;
+
+        $path = '';
+        if ($req->hasFile('user_photo')) {
+            $file = $req->file('user_photo');
+            $filename = $file->getClientOriginalName();
+            $folder = $homeInfo->user_name;
+            $path = $req->file('user_photo')->storeAs($folder, $filename, 'public');
+        }
+        $homeInfo->user_photo = '/storage/'.$path;
         $homeInfo->user_message = $req->user_message;
 
         $homeInfo->save();

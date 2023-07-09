@@ -11,6 +11,8 @@
 
 	<link rel="stylesheet" href="{{ asset("asset/css/style.css")}}">
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
+
 	</head>
 	<body>
 	<section class="ftco-section">
@@ -47,6 +49,11 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<input type="text" class="form-control" name="user_subject" id="subject" placeholder="Subject">
+												</div>
+											</div>
+                                            <div class="col-md-12">
+												<div class="form-group">
+													<input type="file" class="form-control" name="user_photo" id="subject" placeholder="">
 												</div>
 											</div>
 											<div class="col-md-12">

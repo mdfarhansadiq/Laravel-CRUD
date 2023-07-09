@@ -30,6 +30,7 @@
 						      <th>ID no.</th>
 						      <th>User Name</th>
 						      <th>Email</th>
+                              <th>Image File</th>
                               <th>Action</th>
 						      <th>&nbsp;</th>
 						    </tr>
@@ -44,6 +45,7 @@
                                 <td>{{$homeInfo->id}}</td>
 						      <td>{{$homeInfo->user_name}}</td>
 						      <td>{{$homeInfo->user_email}}</td>
+                              <td><img src="{{ asset($homeInfo->user_photo) }}" height="300"/></td>
                               <td><button><a href="{{ url('/home-data/edit/'.$homeInfo->id) }}">Edit</a></button></td>
                               <td><button><a href="{{ url('/home-data/delete/'.$homeInfo->id) }}" onclick="return confirm('Are you sure to delete it?')">Delete</a></button></td>
 						    </tr>
