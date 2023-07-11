@@ -20,6 +20,10 @@
 					<h2 class="heading-section">Table #02</h2>
 				</div>
 			</div>
+            <form action="/logout" method="post">
+                @csrf
+                <button>Logout</button>
+            </form>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
@@ -45,7 +49,7 @@
                                 <td>{{$homeInfo->id}}</td>
 						      <td>{{$homeInfo->user_name}}</td>
 						      <td>{{$homeInfo->user_email}}</td>
-                              <td><img src="{{ asset($homeInfo->user_photo) }}" height="300"/></td>
+                              <td><a href="{{asset($homeInfo->user_photo)}}">Photo</a></td>
                               <td><button><a href="{{ url('/home-data/edit/'.$homeInfo->id) }}">Edit</a></button></td>
                               <td><button><a href="{{ url('/home-data/delete/'.$homeInfo->id) }}" onclick="return confirm('Are you sure to delete it?')">Delete</a></button></td>
 						    </tr>

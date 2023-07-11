@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home\HomeController;
+use App\Models\HomeModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,10 @@ Route::get('/home-data', [HomeController::class, 'homeFunctionAllData']);
 Route::get('/home-data/edit/{id}', [HomeController::class, 'homeFunctionEdit']);
 Route::post('/home-data/update/{id}', [HomeController::class, 'homeFunctionUpdate']);
 Route::get('/home-data/delete/{id}', [HomeController::class, 'homeFunctionDelete']);
+
+Route::get('/registration', [HomeController::class, 'customRegistrationView']);
+Route::post('/registration/create', [HomeController::class, 'customRegistrationCreate']);
+
+Route::get('/login', [HomeController::class, 'customLoginView']);
+Route::post('/login/create', [HomeController::class, 'customLoginCreate']);
+Route::post('/logout', [HomeController::class, 'customLogout']);
