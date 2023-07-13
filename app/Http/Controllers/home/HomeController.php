@@ -26,11 +26,11 @@ class HomeController extends Controller
 
     public function customRegistrationCreate(Request $req)
     {
-        // $req->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:custom_auth_users',
-        //     'pass' => 'required|min:6',
-        // ]);
+        $req->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:custom_auths',
+            'pass' => 'required|min:7'
+        ]);
 
         $data = new CustomAuthModel();
         $data->name = $req->name;
@@ -80,25 +80,19 @@ class HomeController extends Controller
 
     public function homeFunctionCreate(Request $req)
     {
-        $homeInfo = new HomeModel();
-        $homeInfo->user_name = $req->user_name;
-        $homeInfo->user_email = $req->user_email;
-
-        $homeInfo->user_subject = $req->user_subject;
-
-        $path = '';
-        if ($req->hasFile('user_photo')) {
-            $file = $req->file('user_photo');
-            $filename = $file->getClientOriginalName();
-            $folder = $homeInfo->user_name;
-            $path = $req->file('user_photo')->storeAs($folder, $filename, 'public');
+        foreach ($req->user_photo as $file) {
+            $homeInfo = new HomeModel();
+            $homeInfo->user_name = $req->user_name;
+            $homeInfo->user_email = $req->user_email;
+            $homeInfo->user_subject = $req->user_subject;
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/', $filename);
+            $homeInfo->user_photo = 'storage/' . $filename;
+            $homeInfo->user_message = $req->user_message;
+            $homeInfo->save();
         }
-        $homeInfo->user_photo = '/storage/' . $path;
-        $homeInfo->user_message = $req->user_message;
 
-        $homeInfo->save();
-
-        return redirect('/');
+        return redirect('/home-data');
     }
 
     public function homeFunctionAllData()
@@ -106,14 +100,14 @@ class HomeController extends Controller
 
         $userId = Session::get('userid');
 
-        if ($userId == 1) {
-            $homeInfoAll = HomeModel::all();
-            return view('home.allhomedata', compact('homeInfoAll'));
-        }
-        else
-        {
-            return view('');
-        }
+        // if ($userId == 1) {
+        $homeInfoAll = HomeModel::all();
+        return view('home.allhomedata', compact('homeInfoAll'));
+        // }
+        // else
+        // {
+        //     return view('');
+        // }
 
     }
 

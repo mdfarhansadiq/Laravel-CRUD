@@ -29,21 +29,24 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" />
-                                {{-- @if ($errors->has('name'))
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
-                                @endif --}}
+                                <input type="text" name="name" id="name" placeholder="Your Name">
+                                @if ($errors->has('name'))
+                                    <span class="text-danger" style="color: red">{{ $errors->first('name') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" />
-                                {{-- @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                                @endif --}}
+                                <input type="email" name="email" id="email" placeholder="Your Email">
+                                @if ($errors->has('email'))
+                                    <span class="text-danger" style="color: red">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="pass" id="pass" placeholder="Password" />
+                                @if ($errors->has('pass'))
+                                    <span class="text-danger" style="color: red">{{ $errors->first('pass') }}</span>
+                                @endif
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit"
